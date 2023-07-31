@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/survey_mode_switcher.css' %}">
 {% endblock %}
 
-
-
+{% block content %}
 <main>
     <div class="floating-menu">
         <button class="menu-toggle" id="menuToggle" onclick="handleMenuToggle()">
@@ -128,7 +127,9 @@
     </div>
 </main>
 
-{% block scripts %}]
+{% endblock %}
+
+{% block scripts %}
     <script src="{% static 'js/submitBtnActivity.js' %}"></script>
     <script src="{% static 'js/surveyModeTogglerScript.js' %}"></script>
     <script src="{% static 'js/createCheckboxBlockScript.js' %}"></script>
