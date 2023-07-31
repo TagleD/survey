@@ -1,0 +1,60 @@
+.fixed-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  .confirm-save-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .confirm-save-button-active{
+    background-color: #4285f4;
+    color: white;
+  }
+
+  .confirm-save-button-active:hover {
+    background-color: #3367d6;
+  }
+
+  .confirm-save-button-active:active {
+    background-color: #2a56c6;
+  }
+
+  .confirm-save-button-disabled, .confirm-save-button-disabled:hover {
+    background-color: #E0E0E0;
+    color: #9E9E9E;
+  }
+
+  .error-message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #FF7043;
+    color: #FFF;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 45px;
+    right: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .error-message svg {
+    width: 2rem;
+    margin-right: 10px;
+  }
+
+  .error-message.active {
+    visibility: visible;
+    opacity: 1;
+  }

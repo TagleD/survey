@@ -1,0 +1,108 @@
+.menu-toggle:hover {
+    background-color: #0354b6;
+}
+
+.menu-toggle.open svg {
+    transform:rotate(45deg) scale(0.8);
+}
+
+.menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.menu-item svg {
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+}
+
+
+.menu-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease;
+  }
+
+  .menu-content.open {
+    height: 200px;
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    transition: height 0.5s ease;
+  }
+
+  .floating-menu {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    z-index: 999;
+}
+
+.menu-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: #0354b6;
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    color: #202124;
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.menu-item:hover {
+    background-color: #f5f5f5;
+}
+
+.menu-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+.tooltip-text {
+    position: absolute;
+    top: 50%; 
+    left: calc(100% + 8px);
+    transform: translateY(-50%);
+    padding: 8px;
+    background-color: #202124;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2;
+}
+
+.menu-item:hover .tooltip-text {
+    opacity: 1;
+    visibility: visible;
+}

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Конструктор{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/floating_menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form_style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/submit_btn.css' %}">
+    <link rel="stylesheet" href="{% static 'css/survey_constructor.css' %}">
+    <link rel="stylesheet" href="{% static 'css/survey_mode_switcher.css' %}">
+{% endblock %}
+
+
+
+<main>
+    <div class="floating-menu">
+        <button class="menu-toggle" id="menuToggle" onclick="handleMenuToggle()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M5 12h14"></path>
+            </svg>
+        </button>
+        <div class="menu-content">
+            <ul class="menu-items">
+                <li class="menu-item" id="createCheckboxFormBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <polyline points="7 13 11 17 17 7"></polyline>
+                    </svg>
+                    <span class="tooltip-text">Создать форму с множественным выбором</span>
+                </li>
+                <li class="menu-item" id="createRadioFormBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                    </svg>
+                    <span class="tooltip-text" onclick="toggleRadioForm()">Создать форму с единственным выбором</span>
+                </li>
+                <li class="menu-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path
+                                    d="M22 10.5V12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2H13.5"
+                                    stroke="#1C274C" stroke-width="1.5" stroke-linecap="round">
+                            </path>
+                            <path
+                                    d="M16.652 3.45506L17.3009 2.80624C18.3759 1.73125 20.1188 1.73125 21.1938 2.80624C22.2687 3.88124 22.2687 5.62415 21.1938 6.69914L20.5449 7.34795M16.652 3.45506C16.652 3.45506 16.7331 4.83379 17.9497 6.05032C19.1662 7.26685 20.5449 7.34795 20.5449 7.34795M16.652 3.45506L10.6872 9.41993C10.2832 9.82394 10.0812 10.0259 9.90743 10.2487C9.70249 10.5114 9.52679 10.7957 9.38344 11.0965C9.26191 11.3515 9.17157 11.6225 8.99089 12.1646L8.41242 13.9M20.5449 7.34795L14.5801 13.3128C14.1761 13.7168 13.9741 13.9188 13.7513 14.0926C13.4886 14.2975 13.2043 14.4732 12.9035 14.6166C12.6485 14.7381 12.3775 14.8284 11.8354 15.0091L10.1 15.5876M10.1 15.5876L8.97709 15.9619C8.71035 16.0508 8.41626 15.9814 8.21744 15.7826C8.01862 15.5837 7.9492 15.2897 8.03811 15.0229L8.41242 13.9M10.1 15.5876L8.41242 13.9"
+                                    stroke="#1C274C" stroke-width="1.5">
+                            </path>
+                        </g>
+                    </svg>
+                    <span class="tooltip-text">Создать форму с текстовым полем</span>
+                </li>
+                <li class="menu-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="6" rx="2" ry="2"></rect>
+                        <rect x="3" y="15" width="18" height="6" rx="2" ry="2"></rect>
+                    </svg>
+                    <span class="tooltip-text">Создать новый раздел</span>
+                </li>
+                <li class="menu-item">
+                    <svg viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg" fill="" stroke="currentColor"
+                         stroke-width="0.05">
+                        <g id="SVGRepo_bgCarrier" stroke-width=""></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+                           stroke-width="0.256"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <g fill="none" fill-rule="evenodd">
+                                <path d="m0 0h32v32h-32z"></path>
+                                <path
+                                        d="m24 2c4.418278 0 8 3.581722 8 8v12c0 4.418278-3.581722 8-8 8h-16c-4.418278 0-8-3.581722-8-8v-12c0-4.418278 3.581722-8 8-8zm-15.15704017 11.3933983-6.84295983 6.8426017v1.764c0 3.2383969 2.56557489 5.8775718 5.77506174 5.9958615l.22493826.0041385h15.45zm21.15704017-1.8643983-10.096 10.097 6.048224 6.0492469c2.2878684-.7868384 3.9503124-2.9181728 4.0436375-5.4503086l.0041385-.2249383zm-6-7.529h-16c-3.23839694 0-5.87757176 2.56557489-5.99586153 5.77506174l-.00413847.22493826v7.407l5.42874627-5.4278153c.74554637-.7455464 1.93326028-.7794348 2.71900373-.1016654l.1094234.1016654 8.2318266 8.2318153 11.3946671-11.39268045c-.5346164-2.67667729-2.8501212-4.71066623-5.6587288-4.81418108zm-5.4 2c2.209139 0 4 1.790861 4 4s-1.790861 4-4 4-4-1.790861-4-4 1.790861-4 4-4zm0 2c-1.1045695 0-2 .8954305-2 2s.8954305 2 2 2 2-.8954305 2-2-.8954305-2-2-2z"
+                                        fill="#000000" fill-rule="nonzero">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                    <span class="tooltip-text">Добавить картинку</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="formContainer">
+        <div class="survey-question text-center survey-element pt-4 px-3 element-colors survey_header">
+            <div class="header_toggle_name_wrapper">
+                <input type="text" placeholder="Введите Название опроса" class="form-control">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggle"/>
+                    <span class="slider round"></span>
+                    <span class="label-text" id="label">Опрос</span>
+                </label>
+            </div>
+            <textarea class="question-form-control survey_header_discription" id="surveyDescription"
+                      placeholder="Добавьте описание" rows="3"></textarea>
+        </div>
+        <!-- Survey forms will be added dynamically here -->
+    </div>
+    <div class="fixed-button-container">
+        <button class="confirm-save-button confirm-save-button-disabled" id="confirmSaveButton">Подтвердить и
+            сохранить
+        </button>
+        <div class="error-message" id="errorMessage">
+            <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+            >
+                <path
+                        d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2ZM11 14H9V12H11V14ZM11 10H9V6H11V10Z"
+                        fill="white"
+                />
+            </svg>
+
+            <div>Пожалуйста, заполните все поля.</div>
+        </div>
+    </div>
+</main>
+
+{% block scripts %}]
+    <script src="{% static 'js/submitBtnActivity.js' %}"></script>
+    <script src="{% static 'js/surveyModeTogglerScript.js' %}"></script>
+    <script src="{% static 'js/createCheckboxBlockScript.js' %}"></script>
+    <script src="{% static 'js/createRadioBlockScript.js' %}"></script>
+    <script src="{% static 'js/floatingMenuTgglerScript.js' %}"></script>
+{% endblock %}
+
+

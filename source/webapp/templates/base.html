@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/main_style.css' %}">
+    {% block stylesheets %}
+    {% endblock %}
+</head>
+
+<body>
+<header>
+    <div class="logo-container">
+        <img src="your-logo.png" alt="TOO KAP Technology">
+    </div>
+    <button class="menu-button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="menu">
+        <li class="menu-item">
+            <a href="/static">
+                Главная
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/constructor">
+                Создать новый опрос
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/surveys-available">
+                Доступные опросы
+            </a>
+        </li>
+    </ul>
+</header>
+
+
+<footer></footer>
+
+<script src="{% static 'js/menuToggleScript.js' %}"></script>
+
+{% block scripts %}
+
+{% endblock %}
+
+</body>
+</html>
