@@ -130,7 +130,10 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/submitBtnActivity.js' %}"></script>
+    <script type="module" src="{% static 'js/confirmButtonScripts/confirmButtonScript.js'%}"></script>
+    <script type="module" src="{% static 'js/confirmButtonScripts/errorHandling.js'%}"></script>
+    <script type="module" src="{% static 'js/confirmButtonScripts/formHandling.js'%}"></script>
+    <script type="module" src="{% static 'js/confirmButtonScripts/serverCommunication.js'%}"></script>
     <script src="{% static 'js/surveyModeTogglerScript.js' %}"></script>
     <script src="{% static 'js/createCheckboxBlockScript.js' %}"></script>
     <script src="{% static 'js/createRadioBlockScript.js' %}"></script>
