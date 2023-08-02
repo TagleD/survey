@@ -1,3 +1,5 @@
+import {displayErrorMessage, showFloatingErrorMessage} from "./errorHandling.js";
+
 function checkFormFields() {
     const textareaElements = document.querySelectorAll('#formContainer textarea:not(#survey-description)');
     const inputElements = document.querySelectorAll('#formContainer input[type="text"]');
@@ -21,7 +23,17 @@ function getFormData() {
     const surveyType = document.getElementById('toggle').checked ? 'QUIZ' : 'SURVEY';
     const name = document.getElementById('survey-name').value;
     const description = document.getElementById('survey-description').value;
-    const dateOfCreation = new Date().toISOString();
+    const currentDate = new Date();
+
+    const day = currentDate.getDate().toString().padStart(2, '0').toString();
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0').toString();
+    const year = currentDate.getFullYear().toString().toString();
+
+    const hours = currentDate.getHours().toString().padStart(2, '0').toString();
+    const minutes = currentDate.getMinutes().toString().padStart(2, '0').toString();
+
+
+    const dateOfCreation = day + "." + month + "." + year  + " " + hours + ":" + minutes;
 
     const questionList = [];
 
@@ -57,6 +69,12 @@ function getFormData() {
 }
 
 function handleButtonClick(event) {
+    const forms = document.querySelectorAll('#formContainer form');
+    if (forms.length === 0) {
+        event.preventDefault();
+        showFloatingErrorMessage();
+        return;
+    }
     const confirmSaveButton = document.getElementById('confirmSaveButton');
     if (confirmSaveButton.classList.contains('confirm-save-button-disabled')) {
         event.preventDefault();

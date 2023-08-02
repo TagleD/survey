@@ -1,5 +1,5 @@
 function sendDataToServer(jsonData) {
-  const serverEndpoint = 'your-server-endpoint'; // Replace this with your actual server endpoint
+  const serverEndpoint = 'your-server-endpoint';
 
   return fetch(serverEndpoint, {
     method: 'POST',

@@ -92,7 +92,7 @@
     <div id="formContainer">
         <div class="survey-question text-center survey-element pt-4 px-3 element-colors survey_header">
             <div class="header_toggle_name_wrapper">
-                <input type="text" id="survey-name" placeholder="Введите Название опроса" class="form-control">
+                <input type="text" id="survey-name" placeholder="Введите Название опроса" class="form-control" checked="false">
                 <label class="toggle-switch">
                     <input type="checkbox" id="toggle"/>
                     <span class="slider round"></span>
@@ -108,7 +108,7 @@
         <button class="confirm-save-button confirm-save-button-disabled" id="confirmSaveButton">Подтвердить и
             сохранить
         </button>
-        <div class="error-message" id="errorMessage">
+        <div class="error-message" id="empty-gaps-errorMessage">
             <svg
                     viewBox="0 0 20 20"
                     fill="none"
@@ -123,6 +123,22 @@
             </svg>
 
             <div>Пожалуйста, заполните все поля.</div>
+        </div>
+
+        <div class="error-message" id="too-few-forms-errorMessage">
+            <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+            >
+                <path
+                        d="M10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2ZM11 14H9V12H11V14ZM11 10H9V6H11V10Z"
+                        fill="white"
+                />
+            </svg>
+            <div>Пожалуйста добавьте хотя бы один вопрос.</div>
         </div>
     </div>
 </main>
