@@ -27,7 +27,7 @@ function getFormData() {
 
     const forms = document.querySelectorAll('#formContainer form');
     forms.forEach(form => {
-        const questionType = form.classList.contains('survey-question') ? 'MULTIPLE_CHOICE' : 'SINGLE_CHOICE';
+        const questionType = form.querySelector('input[type="checkbox"]') ? 'MULTIPLE_CHOICE' : 'SINGLE_CHOICE';
         const question = form.querySelector('.question-form-control').value;
 
         const answerOptions = form.querySelectorAll('.answer-options-container textarea');
