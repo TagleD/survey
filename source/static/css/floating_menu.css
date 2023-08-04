@@ -6,11 +6,11 @@
     transform:rotate(45deg) scale(0.8);
 }
 
-.menu-item:hover {
+.floating-menu-item:hover {
     background-color: #f5f5f5;
 }
 
-.menu-item svg {
+.floating-menu-item svg {
     width: 20px;
     height: 20px;
     z-index: 1;
@@ -69,7 +69,7 @@
     margin: 0;
 }
 
-.menu-item {
+.floating-menu-item {
     position: relative;
     display: flex;
     align-items: center;
@@ -78,25 +78,26 @@
     cursor: pointer;
     color: #202124;
     transition: background-color 0.3s ease;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
-.menu-item:hover {
+.floating-menu-item:hover {
     background-color: #f5f5f5;
 }
 
-.menu-item svg {
+.floating-menu-item svg {
     width: 20px;
     height: 20px;
 }
 
-.menu-item[data-title] {
+.floating-menu-item[data-title] {
     position: relative;
     display: inline-block;
     cursor: pointer;
 }
 
-.menu-item[data-title]:hover::before {
+.floating-menu-item[data-title]:hover::before {
     content: attr(data-title);
     position: absolute;
     background-color: #333;
@@ -115,7 +116,7 @@
     transition: opacity 0.2s ease-in-out;
 }
 
-.menu-item[data-title]:hover::after {
+.floating-menu-item[data-title]:hover::after {
     content: "";
     position: absolute;
     width: 0;
@@ -129,7 +130,7 @@
     pointer-events: none;
 }
 
-.menu-item[data-title]:hover::before,
-.menu-item[data-title]:hover::after {
+.floating-menu-item[data-title]:hover::before,
+.floating-menu-item[data-title]:hover::after {
     opacity: 1;
 }
