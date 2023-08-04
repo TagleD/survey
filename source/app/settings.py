@@ -80,9 +80,9 @@ CSRF_COOKIE_SECURE = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'survey',
-        'USER': 'gleb',
-        'PASSWORD': '1982',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'rootroot',
         'HOST': 'localhost',
         'PORT': '',
     }

@@ -1,0 +1,100 @@
+* {
+    margin: 0 auto;
+}
+
+.survey-list-item-wrapper {
+    width: 80%;
+     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete-button {
+    background: #f1f1f1;
+    border: 1px solid #E0E0E0;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.delete-button:hover {
+    background-color: #e2e2e2;
+    color: #dd2c00;
+}
+
+.delete-button:active {
+    background-color: #cecdcd;
+}
+
+.survey-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1008px;
+    height: 30px;
+    padding: 10px 20px;
+    margin-top: 20px !important;
+    background-color: #f1f1f1;
+    border-radius: 50px;
+    border: 1px solid #E0E0E0;
+}
+
+.survey-list-item:hover {
+    background-color: #e2e2e2;
+}
+
+.survey-list-item div {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
+
+.survey-list-item:active {
+    background-color: #cecdcd;
+}
+
+.delete-button[data-title] {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.delete-button[data-title]:hover::before {
+    content: attr(data-title);
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    top: 50%;
+    left: 140%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.delete-button[data-title]:hover::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 8px 6px 0;
+    border-color: transparent #333 transparent transparent;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.delete-button[data-title]:hover::before,
+.delete-button[data-title]:hover::after {
+    opacity: 1;
+}
