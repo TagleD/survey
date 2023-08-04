@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/survey_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        {% for survey in surveys %}
+            <div class="survey-list-item-wrapper">
+                <a class="survey-list-item">
+                    <div>
+                        <h2>{{ survey.pk }}</h2>
+                        <h3>{{ survey.name }}</h3>
+                    </div>
+                    <div>
+                        <p>{{ survey.description }}</p>
+                    </div>
+                </a>
+                <a href="{% url 'survey_delete' survey.pk %}" class="">Удалить</a>
+            </div>
+        {% endfor %}
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/deleteSurveyFromListBtn.js' %}"></script>
+{% endblock %}
+
+
+
