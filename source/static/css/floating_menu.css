@@ -24,7 +24,8 @@
   }
 
   .menu-content.open {
-    height: 200px;
+    height: 225px;
+    width: 355px;
     display: block;
     opacity: 1;
     transform: translateY(0);
@@ -61,6 +62,8 @@
 }
 
 .menu-items {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -71,6 +74,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    width: 20px;
     cursor: pointer;
     color: #202124;
     transition: background-color 0.3s ease;
@@ -86,23 +90,46 @@
     height: 20px;
 }
 
-.tooltip-text {
-    position: absolute;
-    top: 50%; 
-    left: calc(100% + 8px);
-    transform: translateY(-50%);
-    padding: 8px;
-    background-color: #202124;
-    color: #fff;
-    font-size: 12px;
-    border-radius: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 2;
+.menu-item[data-title] {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.menu-item:hover .tooltip-text {
+.menu-item[data-title]:hover::before {
+    content: attr(data-title);
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    top: 50%;
+    left: 120%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.menu-item[data-title]:hover::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 8px 6px 0;
+    border-color: transparent #333 transparent transparent;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.menu-item[data-title]:hover::before,
+.menu-item[data-title]:hover::after {
     opacity: 1;
-    visibility: visible;
 }

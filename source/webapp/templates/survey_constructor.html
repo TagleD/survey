@@ -23,26 +23,24 @@
             </svg>
         </button>
         <div class="menu-content">
-            <ul class="menu-items">
-                <li class="menu-item" id="createCheckboxFormBtn">
+            <ul class="menu-items" >
+                <li class="menu-item" id="createCheckboxFormBtn" data-title="Создать форму с множественным выбором">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                          stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
                         <polyline points="7 13 11 17 17 7"></polyline>
                     </svg>
-                    <span class="tooltip-text">Создать форму с множественным выбором</span>
                 </li>
-                <li class="menu-item" id="createRadioFormBtn">
+                <li class="menu-item" id="createRadioFormBtn" data-title="Создать форму с единственным выбором">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                          stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"></circle>
                         <circle cx="12" cy="12" r="6"></circle>
                     </svg>
-                    <span class="tooltip-text" onclick="toggleRadioForm()">Создать форму с единственным выбором</span>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item" data-title="Создать форму с текстовым полем">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -57,18 +55,16 @@
                             </path>
                         </g>
                     </svg>
-                    <span class="tooltip-text">Создать форму с текстовым полем</span>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item" data-title="Создать новый раздел">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                          stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="3" width="18" height="6" rx="2" ry="2"></rect>
                         <rect x="3" y="15" width="18" height="6" rx="2" ry="2"></rect>
                     </svg>
-                    <span class="tooltip-text">Создать новый раздел</span>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item" data-title="Добавить картинку">
                     <svg viewBox="0 0 33 33" xmlns="http://www.w3.org/2000/svg" fill="" stroke="currentColor"
                          stroke-width="0.05">
                         <g id="SVGRepo_bgCarrier" stroke-width=""></g>
@@ -84,7 +80,6 @@
                             </g>
                         </g>
                     </svg>
-                    <span class="tooltip-text">Добавить картинку</span>
                 </li>
             </ul>
         </div>
