@@ -12,9 +12,12 @@
 
 .delete-button {
     background: #f1f1f1;
+    padding: 1px 4px;
     border: 1px solid #E0E0E0;
+    color:#5e5e5e;
     margin-top: 20px;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 .delete-button:hover {

@@ -12,6 +12,7 @@ confirmSaveButton.addEventListener('click', function () {
             sendDataToServer(jsonData)
                 .then(responseData => {
                     console.log('Form successfully sent to the server!');
+                    window.location.href = "/";
                 })
                 .catch(error => {
                     console.error('Error while sending the form to the server:', error);

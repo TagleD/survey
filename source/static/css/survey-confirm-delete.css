@@ -1,0 +1,61 @@
+* {
+    margin: 0 auto;
+}
+
+.confirm-menu-wrapper {
+    background: #f1f1f1;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+    margin-top: 70px;
+    padding: 30px;
+    width: 500px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.survey-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.survey-info-container h3 {
+    font-weight: normal;
+    margin-bottom: 25px;
+}
+
+.button-container {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button {
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 7px;
+    border: none;
+    color: white;
+}
+
+.confirming-button {
+    background: #C82333;
+}
+
+.confirming-button:active {
+    background: #a01b29;
+}
+
+.cancel {
+    background: #28a745;
+    text-decoration: none;
+}
+
+.cancel:active {
+    background: #24933c;
+}

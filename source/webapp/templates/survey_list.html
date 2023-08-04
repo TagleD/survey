@@ -20,7 +20,7 @@
                         <p>{{ survey.description }}</p>
                     </div>
                 </a>
-                <a href="{% url 'survey_delete' survey.pk %}" class="">Удалить</a>
+                <a data-title="Удалить опрос" class="delete-button" href="{% url 'survey_delete' survey.pk %}" class="">✖</a>
             </div>
         {% endfor %}
     </main>
