@@ -15,7 +15,7 @@ function getCookie(name) {
 }
 
 function sendDataToServer(jsonData) {
-    const serverEndpoint = '/api/create_survey/';
+    const serverEndpoint = '/api/survey/';
 
     return fetch(serverEndpoint, {
         method: 'POST',
