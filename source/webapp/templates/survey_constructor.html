@@ -40,7 +40,7 @@
                         <circle cx="12" cy="12" r="6"></circle>
                     </svg>
                 </li>
-                <li class="floating-menu-item" data-title="Создать форму с текстовым полем">
+                <li class="floating-menu-item" id="createTextFieldFormBtn" data-title="Создать форму с текстовым полем">
                     <svg viewBox="0 0 24 24" fill="none" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -56,7 +56,7 @@
                         </g>
                     </svg>
                 </li>
-                <li class="floating-menu-item" data-title="Создать новый раздел">
+                <li class="floating-menu-item" id="createSectionFormBtn" data-title="Создать новый раздел">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                          stroke-width="2"
                          stroke-linecap="round" stroke-linejoin="round">
@@ -148,6 +148,8 @@
     <script src="{% static 'js/surveyModeTogglerScript.js' %}"></script>
     <script src="{% static 'js/createCheckboxBlockScript.js' %}"></script>
     <script src="{% static 'js/createRadioBlockScript.js' %}"></script>
+    <script src="{% static 'js/createTextFieldBlockScript.js' %}"></script>
+    <script src="{% static 'js/createSectionBlockScript.js' %}"></script>
     <script src="{% static 'js/floatingMenuTgglerScript.js' %}"></script>
 {% endblock %}
 

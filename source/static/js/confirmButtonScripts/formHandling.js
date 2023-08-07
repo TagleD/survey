@@ -1,5 +1,20 @@
 import {displayErrorMessage, showFloatingErrorMessage} from "./errorHandling.js";
 
+function getQuestionType(questionContent) {
+    switch (questionContent) {
+        case "Вопрос со множественным выбором":
+            return "MULTIPLE_CHOICE";
+        case "Вопрос с единственным выбором":
+            return "SINGLE_CHOICE";
+        case "Свободный ответ":
+            return "TEXT_FIELD";
+        case "Раздел":
+            return "SECTION";
+        default:
+            return null;
+    }
+}
+
 function checkFormFields() {
     const textareaElements = document.querySelectorAll('#formContainer textarea:not(#survey-description)');
     const inputElements = document.querySelectorAll('#formContainer input[type="text"]');
@@ -19,7 +34,7 @@ function checkFormFields() {
     }
 }
 
-function getFormData() {
+function getFormData(forms) {
     const surveyType = document.getElementById('toggle').checked ? 'QUIZ' : 'SURVEY';
     const name = document.getElementById('survey-name').value;
     const description = document.getElementById('survey-description').value;
@@ -32,29 +47,51 @@ function getFormData() {
     const hours = currentDate.getHours().toString().padStart(2, '0').toString();
     const minutes = currentDate.getMinutes().toString().padStart(2, '0').toString();
 
+    let questionList = [];
 
-    const dateOfCreation = day + "." + month + "." + year  + " " + hours + ":" + minutes;
+    const dateOfCreation = day + "." + month + "." + year + " " + hours + ":" + minutes;
 
-    const questionList = [];
+    let questionIDCounter = 1;
 
-    const forms = document.querySelectorAll('#formContainer form');
     forms.forEach(form => {
-        const questionType = form.querySelector('input[type="checkbox"]') ? 'MULTIPLE_CHOICE' : 'SINGLE_CHOICE';
+        const ID = questionIDCounter;
+
+        const questionContent = form.querySelector('.question-type').textContent;
+        const questionType = getQuestionType(questionContent);
         const question = form.querySelector('.question-form-control').value;
 
-        const answerOptions = form.querySelectorAll('.answer-options-container textarea');
-        const answerList = Array.from(answerOptions).map(option => option.value);
+        const sectionDescriptionContainer = form.querySelector('.section-description-container');
+        let description = '';
 
-        const rightAnswersList = Array.from(answerOptions)
-            .filter(option => option.previousElementSibling.checked)
+        if (sectionDescriptionContainer) {
+            const descriptionTextarea = sectionDescriptionContainer.querySelector('textarea');
+            if (descriptionTextarea) {
+                description = descriptionTextarea.value;
+            }
+        }
+
+        const answerOptionsContainer = form.querySelector('.answer-options-container');
+        let answerFields = [];
+        if (answerOptionsContainer) {
+            answerFields = answerOptionsContainer.querySelectorAll('textarea');
+        }
+
+        const answerList = Array.from(answerFields).map(option => option.value);
+
+        const rightAnswersList = Array.from(answerFields)
+            .filter(option => option.previousElementSibling && option.previousElementSibling.checked)
             .map(option => option.value);
 
         const questionData = {
+            ID,
             questionType,
             question,
+            description,
             answerList,
             rightAnswersList,
         };
+
+        questionIDCounter++;
 
         questionList.push(questionData);
     });
@@ -68,19 +105,21 @@ function getFormData() {
     };
 }
 
+
 function handleButtonClick(event) {
     const forms = document.querySelectorAll('#formContainer form');
+    const confirmSaveButton = document.getElementById('confirmSaveButton');
+
     if (forms.length === 0) {
         event.preventDefault();
         showFloatingErrorMessage();
         return;
     }
-    const confirmSaveButton = document.getElementById('confirmSaveButton');
+
     if (confirmSaveButton.classList.contains('confirm-save-button-disabled')) {
         event.preventDefault();
         displayErrorMessage();
     } else if (confirmSaveButton.classList.contains('confirm-save-button-active')) {
-        const confirmSaveButton = document.getElementById('confirmSaveButton');
         confirmSaveButton.addEventListener('click', function () {
             const jsonData = getFormData();
             console.log(jsonData);
@@ -106,16 +145,16 @@ function handleButtonClick(event) {
 }
 
 function setupFormHandlers() {
-  const textareaElements = document.querySelectorAll('#formContainer textarea:not(#surveyDescription)');
-  const inputElements = document.querySelectorAll('#formContainer input[type="text"]');
-  const checkboxes = document.querySelectorAll('#formContainer input[type="checkbox"]');
+    const textareaElements = document.querySelectorAll('#formContainer textarea:not(#surveyDescription)');
+    const inputElements = document.querySelectorAll('#formContainer input[type="text"]');
+    const checkboxes = document.querySelectorAll('#formContainer input[type="checkbox"]');
 
-  textareaElements.forEach(textarea => textarea.addEventListener('input', checkFormFields));
-  inputElements.forEach(input => input.addEventListener('input', checkFormFields));
-  checkboxes.forEach(input => input.addEventListener('checkbox', checkFormFields));
+    textareaElements.forEach(textarea => textarea.addEventListener('input', checkFormFields));
+    inputElements.forEach(input => input.addEventListener('input', checkFormFields));
+    checkboxes.forEach(input => input.addEventListener('change', checkFormFields));
 
-  const confirmSaveButton = document.getElementById('confirmSaveButton');
-  confirmSaveButton.addEventListener('click', handleButtonClick);
+    const confirmSaveButton = document.getElementById('confirmSaveButton');
+    confirmSaveButton.addEventListener('click', handleButtonClick);
 }
 
 export { getFormData, setupFormHandlers };

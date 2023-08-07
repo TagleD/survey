@@ -35,15 +35,10 @@ function createCheckboxForm() {
     });
     questionContainer.appendChild(deleteFormButton);
 
-    const answerGroup = newForm.querySelectorAll('textarea');
-    const numberOfCheckboxesInput = document.createElement('input');
-    numberOfCheckboxesInput.type = 'number';
-    numberOfCheckboxesInput.id = `formInput`;
-    numberOfCheckboxesInput.disabled;
-    numberOfCheckboxesInput.readOnly = true;
-    numberOfCheckboxesInput.value = 0;
-    numberOfCheckboxesInput.classList.add('disabled-input');
-    questionContainer.appendChild(numberOfCheckboxesInput);
+    const questionType = document.createElement('div');
+    questionType.textContent = 'Вопрос со множественным выбором';
+    questionType.classList.add('question-type');
+    questionContainer.appendChild(questionType);
 
     const questionField = document.createElement('textarea');
     questionField.classList.add('question-form-control');
@@ -56,7 +51,7 @@ function createCheckboxForm() {
     const answerOptionsContainer = document.createElement('div');
     answerOptionsContainer.classList.add('answer-options-container');
 
-    createCheckboxAnswerOption(answerOptionsContainer, true, formCounter, newForm, numberOfCheckboxesInput);
+    createCheckboxAnswerOption(answerOptionsContainer, true, formCounter, newForm);
 
     newForm.appendChild(answerOptionsContainer);
     formContainer.appendChild(newForm);
@@ -67,18 +62,17 @@ function createCheckboxForm() {
         (event) => {
             event.preventDefault();
             const answerGroup = newForm.querySelectorAll('textarea');
-            createCheckboxAnswerOption(answerOptionsContainer, false, formCounter, newForm, numberOfCheckboxesInput);
+            createCheckboxAnswerOption(answerOptionsContainer, false, formCounter, newForm);
         });
     newForm.appendChild(addButton);
 }
 
-function createCheckboxAnswerOption(parentContainer, checked, formCount, newForm, numberOfCheckboxesInput) {
+function createCheckboxAnswerOption(parentContainer, checked, formCount, newForm) {
     const answerGroup = newForm.querySelectorAll('textarea');
     const answerIndex = answerGroup.length + 1;
 
     const answerContainer = document.createElement('div');
     answerContainer.classList.add('d-flex', 'align-items-center', 'mb-2', 'answer-option-wrapper');
-    numberOfCheckboxesInput.max++;
 
     const checkboxButton = document.createElement('input');
     checkboxButton.type = 'checkbox';
@@ -99,7 +93,6 @@ function createCheckboxAnswerOption(parentContainer, checked, formCount, newForm
             checkboxButton.checked = true;
         }
         checkedCheckboxes = newForm.querySelectorAll('input[type="checkbox"]:checked');
-        numberOfCheckboxesInput.value = (checkedCheckboxes.length === 0) ? 0 : checkedCheckboxes.length;
     };
 
     checkboxButton.addEventListener('change', updateCheckedCheckboxes);
@@ -112,7 +105,6 @@ function createCheckboxAnswerOption(parentContainer, checked, formCount, newForm
 
     deleteButton.addEventListener('click', () => {
         parentContainer.removeChild(answerContainer);
-        numberOfCheckboxesInput.value = (numberOfCheckboxesInput.value - 1 >= 0) ? numberOfCheckboxesInput.value - 1 : 0;
         const updatedAnswerGroup = parentContainer.querySelectorAll('textarea');
 
         const allDeleteButtons = parentContainer.querySelectorAll('.btn-svg');

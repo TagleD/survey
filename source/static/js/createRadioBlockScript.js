@@ -28,7 +28,13 @@ function createRadioForm() {
         formContainer.removeChild(newForm);
     });
     questionContainer.appendChild(deleteFormButton);
-    questionContainer.appendChild(deleteFormButton);
+
+
+    const questionType = document.createElement('div');
+    questionType.textContent = 'Вопрос с единственным выбором';
+    questionType.classList.add('question-type');
+    questionContainer.appendChild(questionType);
+
 
     const questionField = document.createElement('textarea');
     questionField.classList.add('question-form-control');
