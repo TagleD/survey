@@ -1,8 +1,11 @@
 import json
 
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from api.serializer import SurveySerializer
 from webapp.models import Survey
 
 
@@ -26,3 +29,17 @@ def create_survey_view(request):
             return JsonResponse({'status': 'error', 'message': f'Missing required field: {e}'}, status=400)
     else:
         return JsonResponse({'status': 'error', 'message': 'Invalid method. Only POST requests are allowed.'}, status=405)
+
+
+class ApiSurveyDetailView(APIView):
+    def get_object(self, pk):
+        try:
+            return Survey.objects.get(pk=pk)
+        except Survey.DoesNotExist:
+            raise Http404
+
+    def get(self, request, *args, **kwargs):
+        survey_obj = self.get_object(pk=kwargs.get('pk'))
+        serializer = SurveySerializer(survey_obj)
+        return Response(serializer.data)
+

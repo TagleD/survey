@@ -12,7 +12,7 @@ class SurveyCreateView(TemplateView):
     template_name = 'survey_constructor.html'
 
 
-class SurveyDetailView(ListView):
+class SurveyListView(ListView):
     template_name = 'survey_list.html'
 
     context_object_name = 'surveys'
