@@ -34,7 +34,7 @@ function checkFormFields() {
     }
 }
 
-function getFormData(forms) {
+function getFormData() {
     const surveyType = document.getElementById('toggle').checked ? 'QUIZ' : 'SURVEY';
     const name = document.getElementById('survey-name').value;
     const description = document.getElementById('survey-description').value;
@@ -48,6 +48,8 @@ function getFormData(forms) {
     const minutes = currentDate.getMinutes().toString().padStart(2, '0').toString();
 
     let questionList = [];
+
+    const forms = document.querySelectorAll('#formContainer form');
 
     const dateOfCreation = day + "." + month + "." + year + " " + hours + ":" + minutes;
 
