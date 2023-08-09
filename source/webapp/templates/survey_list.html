@@ -4,6 +4,7 @@
 {% block title %}Главная{% endblock %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/form_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/survey_list.css' %}">
     <link rel="stylesheet" href="{% static 'css/modal.css' %}">
 {% endblock %}
@@ -88,7 +89,7 @@
 
         {# функция для формирования текстового поля #}
 
-        function inputTextField(question) {
+        function inputTextField(ID, question) {
 
             const newForm = document.createElement('form');
             newForm.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
@@ -96,17 +97,21 @@
             const questionContainer = document.createElement('div');
             questionContainer.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3', 'radio-item');
 
+            const questionWrapper = document.createElement('div');
+            questionWrapper.classList.add('question-wording-container');
 
-            const questionType = document.createElement('div');
-            questionType.textContent = question;
-            questionType.classList.add('question-type');
+            const questionWording = document.createElement('div');
+            questionWording.textContent =ID + ") " + question;
+            questionWording.classList.add('question-form-control');
 
             const questionField = document.createElement('textarea');
             questionField.classList.add('question-form-control');
             questionField.placeholder = 'Введите ответ';
             questionField.rows = 3;
 
-            questionContainer.appendChild(questionType);
+            questionWrapper.appendChild(questionWording);
+
+            questionContainer.appendChild(questionWrapper);
             questionContainer.appendChild(questionField);
             newForm.appendChild(questionContainer);
 
@@ -118,8 +123,11 @@
             const title_section = document.createElement('h3');
             const description_section = document.createElement('p');
             title_section.innerText = `${id}) ${question}`;
+            title_section.classList.add('question-form-control');
             description_section.innerText = description;
+            description_section.classList.add('question-form-control');
             const section_block = document.createElement('div');
+            section_block.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
             section_block.appendChild(title_section);
             section_block.appendChild(description_section);
             modalContent.appendChild(section_block);

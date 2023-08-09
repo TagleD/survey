@@ -81,14 +81,13 @@ CSRF_COOKIE_SECURE = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'survey',
-        'USER': 'gleb',
-        'PASSWORD': '1982',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'rootroot',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

@@ -49,6 +49,15 @@
     flex-wrap: wrap;
 }
 
+.question-wording-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
 .form-control {
     width: 80%;
     max-width: 455px;
@@ -57,10 +66,20 @@
     padding: 10px;
 }
 
+.id-form {
+    background: #FFFFFF;
+    padding: 7px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
 .question-form-control {
     width: 96%;
     min-width: 96%;
     max-width: 545px;
+    background-color: #FFFFFF;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
@@ -76,7 +95,7 @@
 }
 
 .section-description-container {
-    width:100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
