@@ -42,7 +42,7 @@ def create_user_answer_view(request):
                 json_answer=data
             )
             new_answer.save()
-            return JsonResponse({'status': 'success', 'message': 'Survey created successfully.'}, status=201)
+            return JsonResponse({'status': 'success', 'message': 'Survey created successfully.'}, status=200)
         except json.JSONDecodeError:
             return JsonResponse({'status': 'error', 'message': 'Invalid JSON data.'}, status=400)
         except KeyError as e:
