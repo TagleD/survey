@@ -18,6 +18,7 @@
             <p id="survey-description"></p>
             <p><small id="survey-created-at"></small></p>
             <div id="modal-content"></div>
+            <button class="send-button-active send-button-disabled" id="answer-submit-button">Отправить</button>
         </div>
     </div>
 
@@ -219,13 +220,12 @@
             form.appendChild(divCheckBoxesContainer);
             modalContent.appendChild(form);
         }
-
     </script>
-
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'js/deleteSurveyFromListBtn.js' %}"></script>
+    <script src="{% static 'js/sendButtonScripts/surveyTakingFormHandler.js' %}"></script>
 {% endblock %}
 
 

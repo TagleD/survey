@@ -1,16 +1,33 @@
-import {displayErrorMessage, showFloatingErrorMessage} from "./errorHandling.js";
+// import {displayErrorMessage, showFloatingErrorMessage} from "../confirmButtonScripts/errorHandling";
+function displayErrorMessage() {
+    const errorMessage = document.getElementById('empty-gaps-errorMessage');
+    errorMessage.classList.add('active');
+
+    setTimeout(function () {
+        errorMessage.classList.remove('active');
+    }, 2000);
+}
+
+function showFloatingErrorMessage() {
+    const errorMessageContainer = document.getElementById('too-few-forms-errorMessage');
+    errorMessageContainer.classList.add('active');
+
+    setTimeout(function () {
+        errorMessageContainer.classList.remove('active');
+    }, 2000);
+}
 
 function getTakenQuestionType(input, textarea) {
 
-        if (input && input.type === 'radio') {
-            return 'SINGLE_CHOICE';
-        } else if (input && input.type === 'checkbox') {
-            return 'MULTIPLE_CHOICE';
-        } else if (textarea) {
-            return 'TEXT_FIELD';
-        } else {
-            return 'SECTION';
-        }
+    if (input && input.type === 'radio') {
+        return 'SINGLE_CHOICE';
+    } else if (input && input.type === 'checkbox') {
+        return 'MULTIPLE_CHOICE';
+    } else if (textarea) {
+        return 'TEXT_FIELD';
+    } else {
+        return 'SECTION';
+    }
 
 }
 
@@ -93,7 +110,7 @@ function getTakenFormData() {
 
 function handleButtonClick(event) {
     const forms = document.querySelectorAll('#formContainer form');
-    const confirmSaveButton = document.getElementById('confirmSaveButton');
+    const confirmSaveButton = document.getElementById('answer-submit-button');
 
     if (forms.length === 0) {
         event.preventDefault();
@@ -107,6 +124,7 @@ function handleButtonClick(event) {
     } else if (confirmSaveButton.classList.contains('send-button-active')) {
         confirmSaveButton.addEventListener('click', function () {
             const jsonData = getFormData();
+            console.log('тест');
             console.log(jsonData);
 
             fetch('your-server-endpoint', {
