@@ -18,7 +18,7 @@
             <p id="survey-description"></p>
             <p><small id="survey-created-at"></small></p>
             <div id="modal-content"></div>
-            <button class="send-button-active send-button-disabled" id="answer-submit-button">Отправить</button>
+            <button class="send-btn send-button-active" id="answer-submit-button">Отправить</button>
         </div>
     </div>
 
@@ -46,6 +46,7 @@
 
 
     <script>
+
         {#   Элементы для управления модальным окном    #}
         const modal = document.getElementById("modal");
         const modalContent = document.getElementById("modal-content");
@@ -185,24 +186,32 @@
             modalContent.appendChild(form);
         }
 
-        function inputCheckboxField(ID, question, answerList) {
+        function inputCheckboxField(ID, question, answerList, rightAnswerList) {
             {# Cоздание самой чекбокс формы и названия вопроса #}
             const form = document.createElement('form');
             form.setAttribute('id', `form_${ID}`);
+            form.setAttribute('data-max-allowed', rightAnswerList.length);
             form.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
             const div = document.createElement('div');
             div.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3', 'radio-item');
+            const maxAllowedWrapper = document.createElement('div');
+            maxAllowedWrapper.classList.add('max-allowed-wrapper');
+            const maxAllowed = document.createElement('h4');
+            maxAllowedWrapper.classList.add('max-allowed-box');
+            maxAllowed.textContent = "Можно выбрать до " + rightAnswerList.length + " вариантов";
+
             const questionField = document.createElement('h3');
             questionField.innerText = `${ID}) ${question}`;
             questionField.classList.add('question-form-control');
 
             {# Добавление дочерних элементов в родительские #}
+            maxAllowedWrapper.appendChild(maxAllowed);
+            div.appendChild(maxAllowedWrapper);
             div.appendChild(questionField);
             form.appendChild(div);
 
             {#  Создание чекбоксов  #}
             const divCheckBoxesContainer = document.createElement('div');
-            divCheckBoxesContainer.classList.add('answer-options-container');
             answerList.forEach(item => {
                 let answerWrapperDiv = document.createElement('div');
                 answerWrapperDiv.classList.add('d-flex', 'align-items-center', 'mb-2', 'answer-option-wrapper');
