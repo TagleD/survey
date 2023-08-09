@@ -18,6 +18,7 @@
             <p id="survey-description"></p>
             <p><small id="survey-created-at"></small></p>
             <div id="modal-content"></div>
+            <p id="survey-id" style="display: none;"></p>
             <button class="send-btn send-button-active" id="answer-submit-button">Отправить</button>
         </div>
     </div>
@@ -51,6 +52,7 @@
         const modal = document.getElementById("modal");
         const modalContent = document.getElementById("modal-content");
         const surveyName = document.getElementById("survey-name");
+        const id = document.getElementById('survey-id');
         const surveyDescription = document.getElementById("survey-description");
         const surveyCreatedAt = document.getElementById("survey-created-at");
         const closeModalBtn = document.getElementById("closeModalBtn");
@@ -64,6 +66,7 @@
 
         function myFunction(button) {
             const surveyId = button.dataset.surveyId;
+            id.innerText = surveyId;
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 console.log(this.response);

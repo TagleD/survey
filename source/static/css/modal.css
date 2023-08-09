@@ -41,3 +41,7 @@
     margin: 30% auto;
   }
 }
+
+.survey-id {
+  display: none;
+}

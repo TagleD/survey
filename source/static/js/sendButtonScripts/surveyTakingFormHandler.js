@@ -13,6 +13,7 @@ function getTakenQuestionType(input, textarea) {
 }
 
 function getTakenFormData() {
+    const id = document.getElementById('survey-id').innerText;
     const surveyType = document.getElementById("survey-name").getAttribute('survey-type');
     const name = document.getElementById("survey-name").textContent;
     const description = ""; //document.getElementById('survey-description').value;
@@ -94,6 +95,7 @@ function getTakenFormData() {
     });
 
     return {
+        id,
         surveyType,
         name,
         description,
@@ -112,7 +114,7 @@ sendButton.addEventListener('click', function () {
     console.log(formData);
     // Отправляем данные на сервер в формате JSON
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/your-server-endpoint', true);
+    xhr.open('POST', `/api/survey/answer_add`, true);
     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
