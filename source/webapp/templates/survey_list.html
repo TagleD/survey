@@ -15,6 +15,8 @@
         <div class="modal-content">
             <span class="close" id="closeModalBtn">&times;</span>
             <h2 id="survey-name"></h2>
+            <p id="survey-description"></p>
+            <p><small id="survey-created-at"></small></p>
             <div id="modal-content"></div>
         </div>
     </div>
@@ -47,10 +49,13 @@
         const modal = document.getElementById("modal");
         const modalContent = document.getElementById("modal-content");
         const surveyName = document.getElementById("survey-name");
+        const surveyDescription = document.getElementById("survey-description");
+        const surveyCreatedAt = document.getElementById("survey-created-at");
         const closeModalBtn = document.getElementById("closeModalBtn");
 
         function closeModal() {
             modal.style.display = "none";
+            modalContent.innerHTML = '';
         }
 
         closeModalBtn.addEventListener("click", closeModal);
@@ -61,20 +66,21 @@
             xhr.onload = function () {
                 console.log(this.response);
                 let response = JSON.parse(this.response);
-                const createdAt = response.created_at;
                 surveyName.innerText = response.name;
+                surveyDescription.innerText = response.description;
+                surveyCreatedAt.innerText = response.created_at.slice(0, 10);
                 const survey = response.json_survey;
                 const surveyType = survey.surveyType;
                 surveyName.setAttribute('survey-type', surveyType);
                 if (surveyType === 'SURVEY') {
-                    surveyJsonParseToHTML(survey, createdAt);
+                    surveyJsonParseToHTML(survey);
                 }
             }
             xhr.open('GET', `/api/survey/${surveyId}/`);
             xhr.send();
         }
 
-        function surveyJsonParseToHTML(survey, createdAt) {
+        function surveyJsonParseToHTML(survey) {
             modal.style.display = "block";
             console.log(survey);
             survey.questionList.forEach(item => {
@@ -86,6 +92,9 @@
                 }
                 if (item.questionType === 'SINGLE_CHOICE') {
                     inputRadioField(item.ID, item.question, item.answerList);
+                }
+                if (item.questionType === 'MULTIPLE_CHOICE') {
+                    inputCheckboxField(item.ID, item.question, item.answerList, item.rightAnswersList);
                 }
             });
         }
@@ -104,7 +113,7 @@
             questionWrapper.classList.add('question-wording-container');
 
             const questionWording = document.createElement('h3');
-            questionWording.textContent =ID + ") " + question;
+            questionWording.textContent = ID + ") " + question;
             questionWording.classList.add('question-form-control');
 
             const questionField = document.createElement('textarea');
@@ -150,7 +159,7 @@
             questionField.innerText = `${ID}) ${question}`;
             questionField.classList.add('question-form-control');
 
-            {# Добавление дочерних элементов в родительские#}
+            {# Добавление дочерних элементов в родительские #}
             div.appendChild(questionField);
             form.appendChild(div);
 
@@ -175,6 +184,41 @@
             modalContent.appendChild(form);
         }
 
+        function inputCheckboxField(ID, question, answerList) {
+            {# Cоздание самой чекбокс формы и названия вопроса #}
+            const form = document.createElement('form');
+            form.setAttribute('id', `form_${ID}`);
+            form.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
+            const div = document.createElement('div');
+            div.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3', 'radio-item');
+            const questionField = document.createElement('h3');
+            questionField.innerText = `${ID}) ${question}`;
+            questionField.classList.add('question-form-control');
+
+            {# Добавление дочерних элементов в родительские #}
+            div.appendChild(questionField);
+            form.appendChild(div);
+
+            {#  Создание чекбоксов  #}
+            const divCheckBoxesContainer = document.createElement('div');
+            divCheckBoxesContainer.classList.add('answer-options-container');
+            answerList.forEach(item => {
+                let answerWrapperDiv = document.createElement('div');
+                answerWrapperDiv.classList.add('d-flex', 'align-items-center', 'mb-2', 'answer-option-wrapper');
+                let inputCheckBox = document.createElement('input');
+                inputCheckBox.type = 'checkbox';
+                inputCheckBox.name = `checkboxQuestion_${ID}`;
+                let answer = document.createElement('p');
+                answer.classList.add('form-control');
+                answer.innerText = item;
+                answerWrapperDiv.appendChild(inputCheckBox);
+                answerWrapperDiv.appendChild(answer);
+                divCheckBoxesContainer.appendChild(answerWrapperDiv);
+            });
+
+            form.appendChild(divCheckBoxesContainer);
+            modalContent.appendChild(form);
+        }
 
     </script>
 
