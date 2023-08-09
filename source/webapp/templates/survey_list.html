@@ -79,10 +79,10 @@
                     inputTextField(item.ID, item.question);
                 }
                 if (item.questionType === 'SECTION') {
-                    inputSectionField(item.ID, item.question, item.description)
+                    inputSectionField(item.ID, item.question, item.description);
                 }
-                if (item.questionType === 'SINGLE_CHOICE'){
-                    inputRadioField(item.ID, item.question, )
+                if (item.questionType === 'SINGLE_CHOICE') {
+                    inputRadioField(item.ID, item.question, item.answerList);
                 }
             });
         }
@@ -119,6 +119,7 @@
         }
 
         {# функция для формирования секции #}
+
         function inputSectionField(id, question, description) {
             const title_section = document.createElement('h3');
             const description_section = document.createElement('p');
@@ -131,6 +132,46 @@
             section_block.appendChild(title_section);
             section_block.appendChild(description_section);
             modalContent.appendChild(section_block);
+        }
+
+        {#  Функция для формирования блока с одним правильным ответом  #}
+
+        function inputRadioField(ID, question, answerList) {
+
+            {# Cоздание самой радио формы и названия вопроса #}
+            const form = document.createElement('form');
+            form.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
+            const div = document.createElement('div');
+            div.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3', 'radio-item');
+            const divDescription = document.createElement('div');
+            divDescription.classList.add('question-type');
+            divDescription.innerText = 'Вопрос с единственным выбором';
+            const questionField = document.createElement('h3');
+            questionField.innerText = `${ID}) ${question}`;
+
+            {# Добавление дочерних элементов в родительские#}
+            div.appendChild(divDescription);
+            div.appendChild(questionField);
+            form.appendChild(div);
+            modalContent.appendChild(form);
+
+            {# Создание радио кнопок #}
+            const divRadioButtons = document.createElement('div');
+            div.classList.add('answer-options-container');
+            answerList.forEach(item => {
+                let answerWrapperDiv = document.createElement('div');
+                answerWrapperDiv.classList.add('d-flex', 'align-items-center', 'mb-2', 'answer-option-wrapper');
+                let input_radio = document.createElement('input');
+                input_radio.type = 'radio';
+                input_radio.name = `radioQuestion_${ID}`;
+                let answer = document.createElement('p');
+                answer.innerText = item;
+                answerWrapperDiv.appendChild(input_radio);
+                answerWrapperDiv.appendChild(answer);
+                divRadioButtons.appendChild(answerWrapperDiv);
+            });
+
+            modalContent.appendChild(divRadioButtons);
         }
 
 
