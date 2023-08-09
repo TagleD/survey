@@ -5,9 +5,19 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{% static 'css/survey_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}">
 {% endblock %}
 
 {% block content %}
+    {#  Модальное окно   #}
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>Модальное окно</h2>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
     <main>
         {% for survey in surveys %}
             <div class="survey-list-item-wrapper">
@@ -19,16 +29,109 @@
                     <div>
                         <p>{{ survey.description }}</p>
                     </div>
+                    <div>
+                        <button class="my-button" data-survey-id="{{ survey.pk }}" onclick="myFunction(this)">Пройти
+                            опрос
+                        </button>
+                    </div>
                 </a>
-                <a data-title="Удалить опрос" class="delete-button" href="{% url 'survey_delete' survey.pk %}" class="">✖</a>
+                <a data-title="Удалить опрос" class="delete-button" href="{% url 'survey_delete' survey.pk %}">✖</a>
             </div>
         {% endfor %}
     </main>
+
+
+    <script>
+        {#   Элементы для управления модальным окном    #}
+        const modal = document.getElementById("modal");
+        const modalContent = document.getElementById("modal-content");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        closeModalBtn.addEventListener("click", closeModal);
+
+        function myFunction(button) {
+            const surveyId = button.dataset.surveyId;
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                console.log(this.response);
+                let response = JSON.parse(this.response);
+                const createdAt = response.created_at;
+                const survey = response.json_survey;
+                const surveyType = survey.surveyType;
+                if (surveyType === 'SURVEY') {
+                    surveyJsonParseToHTML(survey, createdAt);
+                }
+            }
+            xhr.open('GET', `http://127.0.0.1:8121/api/survey/${surveyId}/`);
+            xhr.send();
+        }
+
+        function surveyJsonParseToHTML(survey, createdAt) {
+            modal.style.display = "block";
+            console.log(survey);
+            survey.questionList.forEach(item => {
+                if (item.questionType === 'TEXT_FIELD') {
+                    inputTextField(item.ID, item.question);
+                }
+                if (item.questionType === 'SECTION') {
+                    inputSectionField(item.ID, item.question, item.description)
+                }
+            });
+        }
+
+        {# функция для формирования текстового поля #}
+
+        function inputTextField(question) {
+
+            const newForm = document.createElement('form');
+            newForm.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
+
+            const questionContainer = document.createElement('div');
+            questionContainer.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3', 'radio-item');
+
+
+            const questionType = document.createElement('div');
+            questionType.textContent = question;
+            questionType.classList.add('question-type');
+
+            const questionField = document.createElement('textarea');
+            questionField.classList.add('question-form-control');
+            questionField.placeholder = 'Введите ответ';
+            questionField.rows = 3;
+
+            questionContainer.appendChild(questionType);
+            questionContainer.appendChild(questionField);
+            newForm.appendChild(questionContainer);
+
+            modalContent.appendChild(newForm);
+        }
+
+        {# функция для формирования секции #}
+        function inputSectionField(id, question, description) {
+            const title_section = document.createElement('h3');
+            const description_section = document.createElement('p');
+            title_section.innerText = `${id}) ${question}`;
+            description_section.innerText = description;
+            const section_block = document.createElement('div');
+            section_block.appendChild(title_section);
+            section_block.appendChild(description_section);
+            modalContent.appendChild(section_block);
+        }
+
+
+    </script>
+
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'js/deleteSurveyFromListBtn.js' %}"></script>
 {% endblock %}
+
+
 
 
 
