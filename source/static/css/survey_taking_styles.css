@@ -1,0 +1,27 @@
+.send-btn {
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #5e5e5e;
+    color: #FFFFFF;
+}
+
+.send-btn-active {
+    background: #28a745;
+}
+
+.send-btn-active:hover {
+    background: #228d3b;
+}
+
+.send-btn-active:active {
+    background: #1c722f;
+}
+
+.send-btn-disabled {
+    background: #666666;
+}
+
+.send-btn-disabled:hover {
+    background: #5f6368;
+}
+
