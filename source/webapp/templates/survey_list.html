@@ -65,6 +65,7 @@
                 surveyName.innerText = response.name;
                 const survey = response.json_survey;
                 const surveyType = survey.surveyType;
+                surveyName.setAttribute('survey-type', surveyType);
                 if (surveyType === 'SURVEY') {
                     surveyJsonParseToHTML(survey, createdAt);
                 }
@@ -102,7 +103,7 @@
             const questionWrapper = document.createElement('div');
             questionWrapper.classList.add('question-wording-container');
 
-            const questionWording = document.createElement('div');
+            const questionWording = document.createElement('h3');
             questionWording.textContent =ID + ") " + question;
             questionWording.classList.add('question-form-control');
 
