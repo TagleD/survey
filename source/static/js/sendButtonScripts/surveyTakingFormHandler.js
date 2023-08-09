@@ -13,8 +13,8 @@ function getTakenQuestionType(input, textarea) {
 }
 
 function getTakenFormData() {
-    const surveyType = document.getAttribute('survey-type');
-    const name = surveyType.value;
+    const surveyType = document.getElementById("survey-name").getAttribute('survey-type');
+    const name = document.getElementById("survey-name").textContent;
     const description = ""; //document.getElementById('survey-description').value;
     const currentDate = new Date();
 
