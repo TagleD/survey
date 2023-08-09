@@ -66,7 +66,7 @@
                     surveyJsonParseToHTML(survey, createdAt);
                 }
             }
-            xhr.open('GET', `http://127.0.0.1:8121/api/survey/${surveyId}/`);
+            xhr.open('GET', `/api/survey/${surveyId}/`);
             xhr.send();
         }
 
@@ -79,6 +79,9 @@
                 }
                 if (item.questionType === 'SECTION') {
                     inputSectionField(item.ID, item.question, item.description)
+                }
+                if (item.questionType === 'SINGLE_CHOICE'){
+                    inputRadioField(item.ID, item.question, )
                 }
             });
         }
