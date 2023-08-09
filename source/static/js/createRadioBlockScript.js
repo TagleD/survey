@@ -87,8 +87,6 @@ function createRadioAnswerOption(parentContainer, checked, formCount) {
 
     deleteButton.addEventListener('click', () => {
         parentContainer.removeChild(answerContainer);
-        const updatedAnswerGroup = parentContainer.querySelectorAll('textarea');
-        // updateMaxInputValue(updatedAnswerGroup);
 
         const allDeleteButtons = parentContainer.querySelectorAll('.btn-svg');
         if (allDeleteButtons.length > 1) {

@@ -59,6 +59,7 @@
 }
 
 .form-control {
+    background: #FFFFFF;
     width: 80%;
     max-width: 455px;
     border: 1px solid #ccc;
