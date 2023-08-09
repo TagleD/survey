@@ -67,6 +67,18 @@
     padding: 10px;
 }
 
+.textarea-form-control {
+    background: #FFFFFF;
+    width: 96%;
+    min-width: 96%;
+    max-width: 545px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+
 .id-form {
     background: #FFFFFF;
     padding: 7px 10px;
