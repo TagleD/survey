@@ -1,14 +1,14 @@
 function getTakenQuestionType(input, textarea) {
 
-        if (input && input.type === 'radio') {
-            return 'SINGLE_CHOICE';
-        } else if (input && input.type === 'checkbox') {
-            return 'MULTIPLE_CHOICE';
-        } else if (textarea) {
-            return 'TEXT_FIELD';
-        } else {
-            return 'SECTION';
-        }
+    if (input && input.type === 'radio') {
+        return 'SINGLE_CHOICE';
+    } else if (input && input.type === 'checkbox') {
+        return 'MULTIPLE_CHOICE';
+    } else if (textarea) {
+        return 'TEXT_FIELD';
+    } else {
+        return 'SECTION';
+    }
 
 }
 
@@ -58,13 +58,27 @@ function getTakenFormData() {
             answerFields = answerOptionsContainer.querySelectorAll('.form-control, .textarea-form-control');
         }
 
-        const answerList = Array.from(answerFields).map(option => option.value);
+        const answerList = Array.from(answerFields).map(option => {
+            if (option.tagName === 'P') {
+                return option.textContent; // Если это <p>, берем текст содержимого
+            } else if (option.tagName === 'TEXTAREA') {
+                return option.value; // Если это <textarea>, берем значение
+            } else if (option.tagName === 'INPUT' && (option.type === 'radio' || option.type === 'checkbox')) {
+                return option.nextElementSibling.textContent; // Если это radio/checkbox, берем текст следующего элемента (например, <p>)
+            }
+        });
 
         const rightAnswersList = Array.from(answerFields)
-            .filter(option => (option.previousElementSibling && option.previousElementSibling.checked)
-                || option.tagName == 'textarea')
-            .map(option => option.value);
-
+            .filter(option => option.previousElementSibling && option.previousElementSibling.checked)
+            .map(option => {
+                if (option.tagName === 'P') {
+                    return option.textContent; // Если это <p>, берем текст содержимого
+                } else if (option.tagName === 'TEXTAREA') {
+                    return option.value; // Если это <textarea>, берем значение
+                } else if (option.tagName === 'INPUT' && (option.type === 'radio' || option.type === 'checkbox')) {
+                    return option.nextElementSibling.textContent; // Если это radio/checkbox, берем текст следующего элемента (например, <p>)
+                }
+            });
         const questionData = {
             ID,
             questionType,
@@ -92,7 +106,7 @@ function getTakenFormData() {
 const sendButton = document.querySelector('.send-button-active');
 
 // Добавляем обработчик события при клике на кнопку
-sendButton.addEventListener('click', function() {
+sendButton.addEventListener('click', function () {
     // Вызываем функцию, чтобы получить данные формы
     const formData = getTakenFormData();
     console.log(formData);
@@ -100,7 +114,7 @@ sendButton.addEventListener('click', function() {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/your-server-endpoint', true);
     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 // Обработка успешной отправки

@@ -100,6 +100,7 @@
 }
 
 .answer-options-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -118,6 +119,7 @@
 
 .answer-option-wrapper {
     display: flex;
+    width: 100%;
     flex-direction: row;
     align-items: center;
     gap: 10px;

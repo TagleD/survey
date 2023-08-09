@@ -118,15 +118,18 @@
             questionWording.textContent = ID + ") " + question;
             questionWording.classList.add('question-form-control');
 
+            const ansOptCont = document.createElement("div");
+            ansOptCont.classList.add('answer-options-container');
+
             const questionField = document.createElement('textarea');
             questionField.classList.add('textarea-form-control');
             questionField.placeholder = 'Введите ответ';
             questionField.rows = 3;
 
             questionWrapper.appendChild(questionWording);
-
+            ansOptCont.appendChild(questionField);
             questionContainer.appendChild(questionWrapper);
-            questionContainer.appendChild(questionField);
+            questionContainer.appendChild(ansOptCont);
             newForm.appendChild(questionContainer);
 
             modalContent.appendChild(newForm);
@@ -141,10 +144,13 @@
             title_section.classList.add('question-form-control');
             description_section.innerText = description;
             description_section.classList.add('question-form-control');
-            const section_block = document.createElement('div');
+            const section_block = document.createElement('form');
             section_block.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
+            const ansOptCont = document.createElement("div");
+            ansOptCont.classList.add('answer-options-container');
+            ansOptCont.appendChild(description_section);
             section_block.appendChild(title_section);
-            section_block.appendChild(description_section);
+            section_block.appendChild(ansOptCont);
             modalContent.appendChild(section_block);
         }
 
@@ -212,6 +218,8 @@
 
             {#  Создание чекбоксов  #}
             const divCheckBoxesContainer = document.createElement('div');
+            divCheckBoxesContainer.classList.add('answer-options-container');
+
             answerList.forEach(item => {
                 let answerWrapperDiv = document.createElement('div');
                 answerWrapperDiv.classList.add('d-flex', 'align-items-center', 'mb-2', 'answer-option-wrapper');
