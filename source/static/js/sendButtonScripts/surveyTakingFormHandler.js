@@ -114,6 +114,7 @@ sendButton.addEventListener('click', function () {
             if (xhr.status === 200) {
                 // Обработка успешной отправки
                 console.log('Данные успешно отправлены на сервер.');
+                window.location.href = `/survey/${id.innerText}/answers`;
             } else {
                 // Обработка ошибки отправки
                 console.error('Произошла ошибка при отправке данных на сервер.');

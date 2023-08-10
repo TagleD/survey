@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Результаты опроса {{ survey.name }}{% endblock %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Вопросы</th>
+            {% for question in survey.json_survey.questionList %}
+            <th>{{ question.ID }}) {{ question.question }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for answer in answers %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% for question in answer.json_answer.questionList %}
+                <td>
+                    {% for ans in question.rightAnswersList %}
+                    <ul>
+                        {{ ans }}
+                    </ul>
+                    {% endfor %}
+                </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
+
