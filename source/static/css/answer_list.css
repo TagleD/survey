@@ -27,7 +27,10 @@ ul, td {
 
 .diagonal-cell {
     width: 80px;
+    min-width: 80px;
     height: 80px;
+    max-height: 80px;
+    min-height: 80px;
     position: relative;
     border: 1px solid #000;
     text-align: center;
