@@ -119,8 +119,17 @@
             questionWrapper.classList.add('question-wording-container');
 
             const questionWording = document.createElement('h3');
-            questionWording.textContent = ID + ") " + question;
+            questionWording.textContent = question;
             questionWording.classList.add('question-form-control');
+
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('max-allowed-wrapper');
+
+            const numberHandler = document.createElement('p')
+            numberHandler.classList.add('id-form');
+            numberHandler.textContent = '#'+ID;
+
+            wrapper.appendChild(numberHandler);
 
             const ansOptCont = document.createElement("div");
             ansOptCont.classList.add('answer-options-container');
@@ -130,6 +139,7 @@
             questionField.placeholder = 'Введите ответ';
             questionField.rows = 3;
 
+            questionWrapper.appendChild(wrapper);
             questionWrapper.appendChild(questionWording);
             ansOptCont.appendChild(questionField);
             questionContainer.appendChild(questionWrapper);
@@ -144,15 +154,22 @@
         function inputSectionField(id, question, description) {
             const title_section = document.createElement('h3');
             const description_section = document.createElement('p');
-            title_section.innerText = `${id}) ${question}`;
+            title_section.innerText = `${question}`;
             title_section.classList.add('question-form-control');
             description_section.innerText = description;
             description_section.classList.add('question-form-control');
             const section_block = document.createElement('form');
             section_block.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('max-allowed-wrapper');
+            const numberHandler = document.createElement('p')
+            numberHandler.classList.add('id-form');
+            numberHandler.textContent = '#'+id;
+            wrapper.appendChild(numberHandler);
             const ansOptCont = document.createElement("div");
             ansOptCont.classList.add('answer-options-container');
             ansOptCont.appendChild(description_section);
+            section_block.appendChild(wrapper);
             section_block.appendChild(title_section);
             section_block.appendChild(ansOptCont);
             modalContent.appendChild(section_block);
@@ -167,11 +184,18 @@
             form.classList.add('survey-question', 'text-center', 'survey-element', 'pt-4', 'px-3', 'element-colors');
             const div = document.createElement('div');
             div.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3', 'radio-item');
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('max-allowed-wrapper');
+            const numberHandler = document.createElement('p');
+            numberHandler.classList.add('id-form');
+            numberHandler.textContent = '#'+ID;
+            wrapper.appendChild(numberHandler);
             const questionField = document.createElement('h3');
-            questionField.innerText = `${ID}) ${question}`;
+            questionField.innerText = `${question}`;
             questionField.classList.add('question-form-control');
 
             {# Добавление дочерних элементов в родительские #}
+            div.appendChild(wrapper);
             div.appendChild(questionField);
             form.appendChild(div);
 
@@ -207,14 +231,19 @@
             const maxAllowedWrapper = document.createElement('div');
             maxAllowedWrapper.classList.add('max-allowed-wrapper');
             const maxAllowed = document.createElement('h4');
-            maxAllowedWrapper.classList.add('max-allowed-box');
+            maxAllowed.classList.add('max-allowed-box');
             maxAllowed.textContent = "Можно выбрать до " + rightAnswerList.length + " вариантов";
 
+            const numberHandler = document.createElement('p')
+            numberHandler.classList.add('id-form');
+            numberHandler.textContent = '#'+ID;
+
             const questionField = document.createElement('h3');
-            questionField.innerText = `${ID}) ${question}`;
+            questionField.innerText = `${question}`;
             questionField.classList.add('question-form-control');
 
             {# Добавление дочерних элементов в родительские #}
+            maxAllowedWrapper.appendChild(numberHandler);
             maxAllowedWrapper.appendChild(maxAllowed);
             div.appendChild(maxAllowedWrapper);
             div.appendChild(questionField);
