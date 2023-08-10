@@ -1,0 +1,497 @@
+[
+{
+  "model": "webapp.survey",
+  "pk": 1,
+  "fields": {
+    "name": "Тестовый опрос",
+    "description": "Опрос для демонстрации работы",
+    "json_survey": {
+      "name": "Тестовый опрос",
+      "surveyType": "SURVEY",
+      "description": "Опрос для демонстрации работы",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Множественный выбор вариантов ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3",
+            "Ответ 4"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 1",
+            "Ответ 4"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Единственный выбор варианта ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 1"
+          ]
+        },
+        {
+          "ID": 3,
+          "question": "Текстовый вопрос",
+          "answerList": [],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": []
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:44"
+    },
+    "created_at": "2023-08-10T10:44:12.047Z"
+  }
+},
+{
+  "model": "webapp.survey",
+  "pk": 2,
+  "fields": {
+    "name": "Тестовый опрос 2",
+    "description": "Опрос для демонстрации секций отделения",
+    "json_survey": {
+      "name": "Тестовый опрос 2",
+      "surveyType": "SURVEY",
+      "description": "Опрос для демонстрации секций отделения",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Форма с единственным выбором",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 1"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Секция отделения",
+          "answerList": [],
+          "description": "Позволяет ввести дополнительную информацию перед вопросом или разделить их",
+          "questionType": "SECTION",
+          "rightAnswersList": []
+        },
+        {
+          "ID": 3,
+          "question": "Эх, тройка! птица тройка, кто тебя выдумал? ",
+          "answerList": [],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": []
+        },
+        {
+          "ID": 4,
+          "question": "Форма с множественным выбором",
+          "answerList": [
+            "Выбор 1",
+            "Выбор 2",
+            "Выбор 3",
+            "Выбор 4",
+            "Выбор 5"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Выбор 3",
+            "Выбор 4",
+            "Выбор 5"
+          ]
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:49"
+    },
+    "created_at": "2023-08-10T10:49:37.152Z"
+  }
+},
+{
+  "model": "webapp.useranswer",
+  "pk": 1,
+  "fields": {
+    "survey": 1,
+    "json_answer": {
+      "id": "1",
+      "name": "Тестовый опрос",
+      "surveyType": "SURVEY",
+      "description": "",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Множественный выбор вариантов ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3",
+            "Ответ 4"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 1",
+            "Ответ 4"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Единственный выбор варианта ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 2"
+          ]
+        },
+        {
+          "ID": 3,
+          "question": "Текстовый вопрос",
+          "answerList": [
+            "Вопрос с расчетом на развернутый ответ"
+          ],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": [
+            "Вопрос с расчетом на развернутый ответ"
+          ]
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:44"
+    },
+    "created_at": "2023-08-10T10:44:35.720Z"
+  }
+},
+{
+  "model": "webapp.useranswer",
+  "pk": 2,
+  "fields": {
+    "survey": 1,
+    "json_answer": {
+      "id": "1",
+      "name": "Тестовый опрос",
+      "surveyType": "SURVEY",
+      "description": "",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Множественный выбор вариантов ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3",
+            "Ответ 4"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 2",
+            "Ответ 3",
+            "Ответ 4"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Единственный выбор варианта ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 3"
+          ]
+        },
+        {
+          "ID": 3,
+          "question": "Текстовый вопрос",
+          "answerList": [
+            "Эх, тройка! птица тройка, кто тебя выдумал? знать, у бойкого народа ты могла только родиться, в той земле, что не любит шутить, а ровнем-гладнем разметнулась на полсвета, да и ступай считать версты, пока не зарябит тебе в очи. "
+          ],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": [
+            "Эх, тройка! птица тройка, кто тебя выдумал? знать, у бойкого народа ты могла только родиться, в той земле, что не любит шутить, а ровнем-гладнем разметнулась на полсвета, да и ступай считать версты, пока не зарябит тебе в очи. "
+          ]
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:45"
+    },
+    "created_at": "2023-08-10T10:45:32.452Z"
+  }
+},
+{
+  "model": "webapp.useranswer",
+  "pk": 3,
+  "fields": {
+    "survey": 1,
+    "json_answer": {
+      "id": "1",
+      "name": "Тестовый опрос",
+      "surveyType": "SURVEY",
+      "description": "",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Множественный выбор вариантов ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3",
+            "Ответ 4"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 1"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Единственный выбор варианта ответа",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2",
+            "Ответ 3"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 1"
+          ]
+        },
+        {
+          "ID": 3,
+          "question": "Текстовый вопрос",
+          "answerList": [
+            " Не в немецких ботфортах ямщик: борода да рукавицы, и сидит черт знает на чем; а привстал, да замахнулся, да затянул песню – кони вихрем, спицы в колесах смешались в один гладкий круг, только дрогнула дорога, да вскрикнул в испуге остановившийся пешеход – и вон она понеслась, понеслась, понеслась!.."
+          ],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": [
+            " Не в немецких ботфортах ямщик: борода да рукавицы, и сидит черт знает на чем; а привстал, да замахнулся, да затянул песню – кони вихрем, спицы в колесах смешались в один гладкий круг, только дрогнула дорога, да вскрикнул в испуге остановившийся пешеход – и вон она понеслась, понеслась, понеслась!.."
+          ]
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:46"
+    },
+    "created_at": "2023-08-10T10:46:00.286Z"
+  }
+},
+{
+  "model": "webapp.useranswer",
+  "pk": 4,
+  "fields": {
+    "survey": 2,
+    "json_answer": {
+      "id": "2",
+      "name": "Тестовый опрос 2",
+      "surveyType": "SURVEY",
+      "description": "",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Форма с единственным выбором",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 1"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Секция отделения",
+          "answerList": [],
+          "description": "Позволяет ввести дополнительную информацию перед вопросом или разделить их",
+          "questionType": "SECTION",
+          "rightAnswersList": []
+        },
+        {
+          "ID": 3,
+          "question": "Эх, тройка! птица тройка, кто тебя выдумал? ",
+          "answerList": [
+            "Знать, у бойкого народа ты могла только родиться, в той земле, что не любит шутить, а ровнем-гладнем разметнулась на полсвета, да и ступай считать версты, пока не зарябит тебе в очи. "
+          ],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": [
+            "Знать, у бойкого народа ты могла только родиться, в той земле, что не любит шутить, а ровнем-гладнем разметнулась на полсвета, да и ступай считать версты, пока не зарябит тебе в очи. "
+          ]
+        },
+        {
+          "ID": 4,
+          "question": "Форма с множественным выбором",
+          "answerList": [
+            "Выбор 1",
+            "Выбор 2",
+            "Выбор 3",
+            "Выбор 4",
+            "Выбор 5"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Выбор 1",
+            "Выбор 2"
+          ]
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:50"
+    },
+    "created_at": "2023-08-10T10:50:04.031Z"
+  }
+},
+{
+  "model": "webapp.useranswer",
+  "pk": 5,
+  "fields": {
+    "survey": 2,
+    "json_answer": {
+      "id": "2",
+      "name": "Тестовый опрос 2",
+      "surveyType": "SURVEY",
+      "description": "",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Форма с единственным выбором",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 2"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Секция отделения",
+          "answerList": [],
+          "description": "Позволяет ввести дополнительную информацию перед вопросом или разделить их",
+          "questionType": "SECTION",
+          "rightAnswersList": []
+        },
+        {
+          "ID": 3,
+          "question": "Эх, тройка! птица тройка, кто тебя выдумал? ",
+          "answerList": [
+            "Остановился пораженный божьим чудом созерцатель: не молния ли это, сброшенная с неба? что значит это наводящее ужас движение?"
+          ],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": [
+            "Остановился пораженный божьим чудом созерцатель: не молния ли это, сброшенная с неба? что значит это наводящее ужас движение?"
+          ]
+        },
+        {
+          "ID": 4,
+          "question": "Форма с множественным выбором",
+          "answerList": [
+            "Выбор 1",
+            "Выбор 2",
+            "Выбор 3",
+            "Выбор 4",
+            "Выбор 5"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Выбор 2",
+            "Выбор 5"
+          ]
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:50"
+    },
+    "created_at": "2023-08-10T10:50:29.164Z"
+  }
+},
+{
+  "model": "webapp.useranswer",
+  "pk": 7,
+  "fields": {
+    "survey": 2,
+    "json_answer": {
+      "id": "2",
+      "name": "Тестовый опрос 2",
+      "surveyType": "SURVEY",
+      "description": "",
+      "questionList": [
+        {
+          "ID": 1,
+          "question": "Форма с единственным выбором",
+          "answerList": [
+            "Ответ 1",
+            "Ответ 2"
+          ],
+          "description": "",
+          "questionType": "SINGLE_CHOICE",
+          "rightAnswersList": [
+            "Ответ 2"
+          ]
+        },
+        {
+          "ID": 2,
+          "question": "Секция отделения",
+          "answerList": [],
+          "description": "Позволяет ввести дополнительную информацию перед вопросом или разделить их",
+          "questionType": "SECTION",
+          "rightAnswersList": []
+        },
+        {
+          "ID": 3,
+          "question": "Эх, тройка! птица тройка, кто тебя выдумал? ",
+          "answerList": [
+            ". Чудным звоном заливается колокольчик; гремит и становится ветром разорванный в куски воздух; летит мимо все, что ни есть на земли, и, косясь, постораниваются и дают ей дорогу другие народы и государства."
+          ],
+          "description": "",
+          "questionType": "TEXT_FIELD",
+          "rightAnswersList": [
+            ". Чудным звоном заливается колокольчик; гремит и становится ветром разорванный в куски воздух; летит мимо все, что ни есть на земли, и, косясь, постораниваются и дают ей дорогу другие народы и государства."
+          ]
+        },
+        {
+          "ID": 4,
+          "question": "Форма с множественным выбором",
+          "answerList": [
+            "Выбор 1",
+            "Выбор 2",
+            "Выбор 5"
+          ],
+          "description": "",
+          "questionType": "MULTIPLE_CHOICE",
+          "rightAnswersList": [
+            "Выбор 1",
+            "Выбор 2"
+          ]
+        }
+      ],
+      "dateOfCreation": "10.08.2023 16:51"
+    },
+    "created_at": "2023-08-10T10:51:31.499Z"
+  }
+}
+]

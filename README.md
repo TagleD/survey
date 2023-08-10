@@ -11,4 +11,14 @@
 5) Переместиться в source ```cd source ```
 6) Настроить в файле source/app/settings.py данные от своей базы данных![img.png](img.png)
 7) Применяем все миграции проекта в консоли ./manage.py migrate
-8) Прописываем ./manage.py runserver
+8) Прописываем в консоли ./manage.py loaddata fixtures/auth.json
+9) Прописываем в коносли ./manage.py loaddata fixtures/webapp.json
+10) Прописываем ./manage.py runserver
+
+#### На сайте есть функционал, который доступен только суперпользователю
+*Войти в аккаунт суперпользователя можно через кнопку ```Войти``` в меню
+
+1. Логин: superuser  
+2. Пароль: rootroot
+
+* Поменять пароль можно через админ-панель, которая доступна по url ```/admin```

@@ -17,7 +17,7 @@
 <header>
     <div class="logo-container">
         <div>
-            <img src="{% static 'img/logo.svg' %}" alt="TOO KAP Technology">
+            <a href="{% url 'index' %}"><img src="{% static 'img/logo.svg' %}" alt="TOO KAP Technology"></a>
         </div>
         {% if user.is_authenticated %}
             <p>User: <b>{{ user.username }}</b></p>
