@@ -19,10 +19,9 @@
         <div>
             <img src="{% static 'img/logo.svg' %}" alt="TOO KAP Technology">
         </div>
-        {#        {% if user.is_authenticated %}#}
-        {#            <p>User: <b>{{ user.username }}</b></p>#}
-        {#        {% endif %}#}
-        <p>Lorem ipsum.</p>
+        {% if user.is_authenticated %}
+            <p>User: <b>{{ user.username }}</b></p>
+        {% endif %}
     </div>
     <button class="menu-button">
         <span></span>
