@@ -1,0 +1,48 @@
+* {
+    margin: 0 auto;
+}
+
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #9E9E9E;
+    padding: 10px;
+}
+
+ul, td {
+    padding: 3px;
+    text-align: center;
+}
+
+.diagonal-cell {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.diagonal-line {
+    position: absolute;
+    width: 1px;
+    height: 142%;
+    transform: rotate(-45deg);
+    background-color: #000;
+    opacity: 0.5;
+    z-index: -1;
+    top: -21px;
+    right: 50px;
+}
+
+.above-text {
+    transform: translateY(-20%) translateX(20%) rotate(45deg);
+    padding: 0 5px;
+}
+
+.below-text {
+    transform: translateY(50%) translateX(-20%) rotate(45deg);
+    padding: 0 5px;
+}

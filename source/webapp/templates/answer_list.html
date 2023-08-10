@@ -3,34 +3,48 @@
 
 {% block title %}Результаты опроса {{ survey.name }}{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'css/answer_list.css' %}"/>
+{% endblock %}
+
 {% block content %}
 
-<table>
-    <thead>
+    <table>
+        <thead>
+
         <tr>
-            <th>Вопросы</th>
+            <th rowspan="2" class="diagonal-cell">
+                <div class="diagonal-line"></div>
+                <div class="above-text">Вопросы</div>
+                <div class="below-text">User ID</div>
+            </th>
             {% for question in survey.json_survey.questionList %}
-            <th>{{ question.ID }}) {{ question.question }}</th>
+                <th>№{{ question.ID }}</th>
             {% endfor %}
         </tr>
-    </thead>
-    <tbody>
+        <tr>
+            {% for question in survey.json_survey.questionList %}
+                <th>{{ question.question }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
         {% for answer in answers %}
             <tr>
                 <td>{{ forloop.counter }}</td>
                 {% for question in answer.json_answer.questionList %}
-                <td>
-                    {% for ans in question.rightAnswersList %}
-                    <ul>
-                        {{ ans }}
-                    </ul>
-                    {% endfor %}
-                </td>
+                    <td>
+                        {% for ans in question.rightAnswersList %}
+                            <ul>
+                                {{ ans }}
+                            </ul>
+                        {% endfor %}
+                    </td>
                 {% endfor %}
             </tr>
         {% endfor %}
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 {% endblock %}
 
