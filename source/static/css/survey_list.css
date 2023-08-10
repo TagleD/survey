@@ -4,7 +4,7 @@
 
 .survey-list-item-wrapper {
     width: 80%;
-     display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -43,7 +43,15 @@
     border: 1px solid #E0E0E0;
 }
 
-.survey-list-item:hover {
+.my-button {
+    border: 1px solid #9E9E9E;
+    border-radius: 15px;
+    padding: 10px 15px;
+    background:  #f1f1f1;
+    color: #000;
+}
+
+.my-button:hover {
     background-color: #e2e2e2;
 }
 
@@ -54,7 +62,7 @@
     justify-content:space-between;
 }
 
-.survey-list-item:active {
+.my-button:active {
     background-color: #cecdcd;
 }
 
