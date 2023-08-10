@@ -1,10 +1,8 @@
-import json
-
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import render
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, DeleteView, DetailView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import TemplateView, ListView, DeleteView, DetailView, UpdateView
 
+from webapp.forms import SurveyForm
 from webapp.models import Survey, UserAnswer
 
 
@@ -32,7 +30,6 @@ class SurveyDeleteView(UserPassesTestMixin, DeleteView):
         return self.request.user.is_authenticated
 
 
-
 class SurveyDetailView(DetailView):
     template_name = 'answer_list.html'
     model = Survey
@@ -44,4 +41,11 @@ class SurveyDetailView(DetailView):
         return context
 
 
+class SurveyUpdateView(UpdateView):
+    model = Survey
+    form_class = SurveyForm
+    template_name = 'update_survey.html'
+    context_object_name = 'survey'
 
+    def get_success_url(self):
+        return reverse('index')
