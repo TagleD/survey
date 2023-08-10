@@ -2,6 +2,7 @@ import json
 
 from django.http import JsonResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -10,6 +11,12 @@ from webapp.models import Survey, UserAnswer
 
 
 # Create your views here.
+
+class ApiSurveyListView(APIView):
+    def get(self, request, *args, **kwargs):
+        objects = Survey.objects.all()
+        serializer = SurveySerializer(objects, many=True)
+        return Response(serializer.data, status=200)
 
 @csrf_exempt
 def create_survey_view(request):
@@ -54,7 +61,7 @@ def create_user_answer_view(request):
 
 #
 
-class ApiSurveyDetailView(APIView):
+class ApiSurveyDetailUpdateDeleteView(APIView):
     def get_object(self, pk):
         try:
             return Survey.objects.get(pk=pk)
@@ -64,4 +71,17 @@ class ApiSurveyDetailView(APIView):
     def get(self, request, *args, **kwargs):
         survey_obj = self.get_object(pk=kwargs.get('pk'))
         serializer = SurveySerializer(survey_obj)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, *args, **kwargs):
+        object = self.get_object(pk=self.kwargs.get('pk'))
+        serializer = SurveySerializer(object, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, *args, **kwargs):
+        object = self.get_object(pk=kwargs.get('pk'))
+        object.delete()
+        return Response({'id': kwargs.get('pk')}, status=status.HTTP_204_NO_CONTENT)
