@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/form_style.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/survey_list.css' %}">
     <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/survey_taking_styles.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -19,7 +20,7 @@
             <p><small id="survey-created-at"></small></p>
             <div id="modal-content"></div>
             <p id="survey-id" style="display: none;"></p>
-            <button class="send-btn send-button-active" id="answer-submit-button">Отправить</button>
+            <button class="send-btn send-btn-active" id="answer-submit-button">Отправить</button>
         </div>
     </div>
 
@@ -176,7 +177,7 @@
 
             {# Создание радио кнопок #}
             const divRadioButtons = document.createElement('div');
-            div.classList.add('answer-options-container');
+            divRadioButtons.classList.add('answer-options-container');
             answerList.forEach(item => {
                 let answerWrapperDiv = document.createElement('div');
                 answerWrapperDiv.classList.add('d-flex', 'align-items-center', 'mb-2', 'answer-option-wrapper');

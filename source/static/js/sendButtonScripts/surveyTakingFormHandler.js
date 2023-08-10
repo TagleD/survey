@@ -41,17 +41,11 @@ function getTakenFormData() {
         const textarea = form.querySelector('textarea');
 
         const questionType = getTakenQuestionType(input, textarea);
+
+        const sectionDescription = (questionType === 'SECTION') ? form.querySelector('.answer-options-container .question-form-control').textContent : "";
+
         const question = form.querySelector('.question-form-control').textContent;
 
-        const sectionDescriptionContainer = form.querySelector('.section-description-container');
-        let description = '';
-
-        if (sectionDescriptionContainer) {
-            const descriptionTextarea = sectionDescriptionContainer.querySelector('textarea');
-            if (descriptionTextarea) {
-                description = descriptionTextarea.value;
-            }
-        }
 
         const answerOptionsContainer = form.querySelector('.answer-options-container');
         let answerFields = [];
@@ -61,11 +55,11 @@ function getTakenFormData() {
 
         const answerList = Array.from(answerFields).map(option => {
             if (option.tagName === 'P') {
-                return option.textContent; // Если это <p>, берем текст содержимого
+                return option.textContent;
             } else if (option.tagName === 'TEXTAREA') {
-                return option.value; // Если это <textarea>, берем значение
+                return option.value;
             } else if (option.tagName === 'INPUT' && (option.type === 'radio' || option.type === 'checkbox')) {
-                return option.nextElementSibling.textContent; // Если это radio/checkbox, берем текст следующего элемента (например, <p>)
+                return option.nextElementSibling.textContent;
             }
         });
 
@@ -73,20 +67,18 @@ function getTakenFormData() {
             .filter(option => option.previousElementSibling && option.previousElementSibling.checked)
             .map(option => {
                 if (option.tagName === 'P') {
-                    return option.textContent; // Если это <p>, берем текст содержимого
+                    return option.textContent;
                 } else if (option.tagName === 'TEXTAREA') {
-                    return option.value; // Если это <textarea>, берем значение
+                    return option.value;
                 } else if (option.tagName === 'INPUT' && (option.type === 'radio' || option.type === 'checkbox')) {
-                    return option.nextElementSibling.textContent; // Если это radio/checkbox, берем текст следующего элемента (например, <p>)
+                    return option.nextElementSibling.textContent;
                 }
             });
+
+        const descriptionValue = sectionDescription ? sectionDescription : '';
+
         const questionData = {
-            ID,
-            questionType,
-            question,
-            description,
-            answerList,
-            rightAnswersList,
+            ID, questionType, question, description: descriptionValue, answerList, rightAnswersList,
         };
 
         questionIDCounter++;
@@ -95,17 +87,12 @@ function getTakenFormData() {
     });
 
     return {
-        id,
-        surveyType,
-        name,
-        description,
-        dateOfCreation,
-        questionList,
+        id, surveyType, name, description, dateOfCreation, questionList,
     };
 }
 
 // Находим кнопку по классу
-const sendButton = document.querySelector('.send-button-active');
+const sendButton = document.querySelector('.send-btn-active');
 
 // Добавляем обработчик события при клике на кнопку
 sendButton.addEventListener('click', function () {
