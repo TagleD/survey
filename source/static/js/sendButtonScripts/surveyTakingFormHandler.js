@@ -35,37 +35,25 @@ function getTakenFormData() {
     let questionIDCounter = 1;
 
     forms.forEach(form => {
-        const ID = questionIDCounter;
+            const ID = questionIDCounter;
 
-        const input = form.querySelector('input[type="radio"], input[type="checkbox"]');
-        const textarea = form.querySelector('textarea');
+            const input = form.querySelector('input[type="radio"], input[type="checkbox"]');
+            const textarea = form.querySelector('textarea');
 
-        const questionType = getTakenQuestionType(input, textarea);
+            const questionType = getTakenQuestionType(input, textarea);
 
-        const sectionDescription = (questionType === 'SECTION') ? form.querySelector('.answer-options-container .question-form-control').textContent : "";
+            const sectionDescription = (questionType === 'SECTION') ? form.querySelector('.answer-options-container .question-form-control').textContent : "";
 
-        const question = form.querySelector('.question-form-control').textContent;
+            const question = form.querySelector('.question-form-control').textContent;
 
 
-        const answerOptionsContainer = form.querySelector('.answer-options-container');
-        let answerFields = [];
-        if (answerOptionsContainer) {
-            answerFields = answerOptionsContainer.querySelectorAll('.form-control, .textarea-form-control');
-        }
-
-        const answerList = Array.from(answerFields).map(option => {
-            if (option.tagName === 'P') {
-                return option.textContent;
-            } else if (option.tagName === 'TEXTAREA') {
-                return option.value;
-            } else if (option.tagName === 'INPUT' && (option.type === 'radio' || option.type === 'checkbox')) {
-                return option.nextElementSibling.textContent;
+            const answerOptionsContainer = form.querySelector('.answer-options-container');
+            let answerFields = [];
+            if (answerOptionsContainer) {
+                answerFields = answerOptionsContainer.querySelectorAll('.form-control, .textarea-form-control');
             }
-        });
 
-        const rightAnswersList = Array.from(answerFields)
-            .filter(option => option.previousElementSibling && option.previousElementSibling.checked)
-            .map(option => {
+            const answerList = Array.from(answerFields).map(option => {
                 if (option.tagName === 'P') {
                     return option.textContent;
                 } else if (option.tagName === 'TEXTAREA') {
@@ -75,16 +63,34 @@ function getTakenFormData() {
                 }
             });
 
-        const descriptionValue = sectionDescription ? sectionDescription : '';
+            let rightAnswersList;
+            if (questionType !== 'TEXT_FIELD') {
+                rightAnswersList = Array.from(answerFields)
+                    .filter(option => option.previousElementSibling && option.previousElementSibling.checked)
+                    .map(option => {
+                        if (option.tagName === 'P') {
+                            return option.textContent;
+                        } else if (option.tagName === 'INPUT' && (option.type === 'radio' || option.type === 'checkbox')) {
+                            return option.nextElementSibling.textContent;
+                        }
+                    });
+            }
+            else {
+                rightAnswersList = answerList;
+            }
 
-        const questionData = {
-            ID, questionType, question, description: descriptionValue, answerList, rightAnswersList,
-        };
+            const descriptionValue = sectionDescription ? sectionDescription : '';
 
-        questionIDCounter++;
+            const questionData = {
+                ID, questionType, question, description: descriptionValue, answerList, rightAnswersList,
+            };
 
-        questionList.push(questionData);
-    });
+            questionIDCounter++;
+
+            questionList.push(questionData);
+        }
+    )
+    ;
 
     return {
         id, surveyType, name, description, dateOfCreation, questionList,
