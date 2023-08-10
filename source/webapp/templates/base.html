@@ -18,6 +18,11 @@
     <div class="logo-container">
         <img src="your-logo.png" alt="TOO KAP Technology">
     </div>
+    {% if user.is_authenticated %}
+        <div>
+            <p>User: <b>{{ user.username }}</b></p>
+        </div>
+    {% endif %}
     <button class="menu-button">
         <span></span>
         <span></span>
@@ -34,6 +39,19 @@
                 Создать новый опрос
             </a>
         </li>
+        {% if user.is_authenticated %}
+            <li class="menu-item">
+                <a href="{% url 'logout' %}">
+                    Выйти
+                </a>
+            </li>
+        {% else %}
+            <li class="menu-item">
+                <a href="{% url 'login' %}">
+                    Войти
+                </a>
+            </li>
+        {% endif %}
     </ul>
 </header>
 

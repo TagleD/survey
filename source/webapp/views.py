@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DeleteView, DetailView
@@ -21,10 +22,14 @@ class SurveyListView(ListView):
     model = Survey
 
 
-class SurveyDeleteView(DeleteView):
+class SurveyDeleteView(UserPassesTestMixin, DeleteView):
     template_name = 'survey_confirm_delete.html'
     model = Survey
     success_url = reverse_lazy('index')
+    permission_denied_message = 'У вас нет прав доступа'
+
+    def test_func(self):
+        return self.request.user.is_authenticated
 
 
 

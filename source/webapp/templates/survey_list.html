@@ -41,7 +41,10 @@
                         </button>
                     </div>
                 </a>
-                <a data-title="Удалить опрос" class="delete-button" href="{% url 'survey_delete' survey.pk %}">✖</a>
+                <a href="{% url 'survey_answers' survey.pk %}">Результаты</a>
+                {% if user.is_authenticated %}
+                    <a data-title="Удалить опрос" class="delete-button" href="{% url 'survey_delete' survey.pk %}">✖</a>
+                {% endif %}
             </div>
         {% endfor %}
     </main>
@@ -127,7 +130,7 @@
 
             const numberHandler = document.createElement('p')
             numberHandler.classList.add('id-form');
-            numberHandler.textContent = '#'+ID;
+            numberHandler.textContent = '#' + ID;
 
             wrapper.appendChild(numberHandler);
 
@@ -164,7 +167,7 @@
             wrapper.classList.add('max-allowed-wrapper');
             const numberHandler = document.createElement('p')
             numberHandler.classList.add('id-form');
-            numberHandler.textContent = '#'+id;
+            numberHandler.textContent = '#' + id;
             wrapper.appendChild(numberHandler);
             const ansOptCont = document.createElement("div");
             ansOptCont.classList.add('answer-options-container');
@@ -188,7 +191,7 @@
             wrapper.classList.add('max-allowed-wrapper');
             const numberHandler = document.createElement('p');
             numberHandler.classList.add('id-form');
-            numberHandler.textContent = '#'+ID;
+            numberHandler.textContent = '#' + ID;
             wrapper.appendChild(numberHandler);
             const questionField = document.createElement('h3');
             questionField.innerText = `${question}`;
@@ -236,7 +239,7 @@
 
             const numberHandler = document.createElement('p')
             numberHandler.classList.add('id-form');
-            numberHandler.textContent = '#'+ID;
+            numberHandler.textContent = '#' + ID;
 
             const questionField = document.createElement('h3');
             questionField.innerText = `${question}`;
