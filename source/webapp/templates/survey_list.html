@@ -41,7 +41,7 @@
                         </button>
                     </div>
                 </a>
-                <a href="{% url 'survey_answers' survey.pk %}">Результаты</a>
+                <a class="result-btn" href="{% url 'survey_answers' survey.pk %}">Результаты</a>
                 {% if user.is_authenticated %}
                     <a data-title="Удалить опрос" class="delete-button" href="{% url 'survey_delete' survey.pk %}">✖</a>
                 {% endif %}
