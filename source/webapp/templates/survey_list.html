@@ -81,9 +81,9 @@
                 const survey = response.json_survey;
                 const surveyType = survey.surveyType;
                 surveyName.setAttribute('survey-type', surveyType);
-                if (surveyType === 'SURVEY') {
+                //if (surveyType === 'SURVEY') {
                     surveyJsonParseToHTML(survey);
-                }
+                //}
             }
             xhr.open('GET', `/api/survey/${surveyId}/`);
             xhr.send();

@@ -17,6 +17,14 @@ ul, td {
     text-align: center;
 }
 
+.right-answer {
+    background: #8fffa8;
+}
+
+.incorrect-answer {
+    background: #ce6541;
+}
+
 .diagonal-cell {
     width: 80px;
     height: 80px;
