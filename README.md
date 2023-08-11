@@ -9,7 +9,7 @@
 4) Активировать виртуальное окружение с помощью команды: ```. venv/bin/activate```
 4) Скачать все дополнительные библиотеки: ```pip install -r requirements.txt```
 5) Переместиться в source ```cd source ```
-6) Настроить в файле source/app/settings.py данные от своей базы данных![img.png](img.png)
+6) Настроить в файле source/app/settings.py данные от своей базы данных!![img_1.png](img_1.png)
 7) Применяем все миграции проекта в консоли ./manage.py migrate
 8) Прописываем в консоли ./manage.py loaddata fixtures/auth.json
 9) Прописываем в коносли ./manage.py loaddata fixtures/webapp.json
